@@ -13,6 +13,10 @@ image?:{
 };
 price:number;
 description?:string;
+slug:{
+    _type:"slug";
+    current:string; 
+}
 
 
 

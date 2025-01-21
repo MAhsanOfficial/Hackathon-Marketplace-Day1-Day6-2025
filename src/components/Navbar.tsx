@@ -39,9 +39,9 @@ const Navbar = () => {
               Shop
               <IoIosArrowDown className='mt-1' />
             </Link>
-            <Link href={'/ProductDetails'} className='text-gray-600 hover:text-black'>On Sale</Link>
+            <Link href={'/Category'} className='text-gray-600 hover:text-black'>On Sale</Link>
             <Link href={'/Category'} className='text-gray-600 hover:text-black'>New Arrivals</Link>
-            <Link href={'/Cart'} className='text-gray-600 hover:text-black'>Brands</Link>
+            <Link href={'/ProductDetails'} className='text-gray-600 hover:text-black'>Brands</Link>
           </nav>
 
          

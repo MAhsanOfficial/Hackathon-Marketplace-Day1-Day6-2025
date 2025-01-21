@@ -77,7 +77,8 @@ const Products = () => {
       </div>
       <br /><br /><br /><br /><br /><br />
       <div className="flex justify-center">
-        <button className='rounded-[62px] h-[52px] w-[218px] border-gray-500 border'>View All</button>
+        {/* <button className='rounded-[62px] h-[52px] w-[218px] border-gray-500 border'>View All</button> */}
+        <Link href={'/Category'}> <button className='rounded-[62px] hover:bg-slate-200  h-[52px] w-[218px] border-gray-500 border'>View All</button></Link>
       </div>
 
       <br /><br /><br />
@@ -150,7 +151,7 @@ const Products = () => {
 <br /><br /><br /><br /><br /><br />
 
 <div className="flex justify-center">
-  <button className='rounded-[62px] h-[52px] w-[218px] border-gray-500 border'>View All</button>
+<Link href={'/Category'}> <button className='rounded-[62px] hover:bg-slate-200  h-[52px] w-[218px] border-gray-500 border'>View All</button></Link>
 </div>
 
 <br /><br /><br />
