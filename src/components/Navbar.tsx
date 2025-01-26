@@ -7,6 +7,8 @@ import { RxCross2 } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
 import { IoIosArrowDown } from 'react-icons/io'
 import { IoMenu } from "react-icons/io5";
+import {SessionProvider} from "next-auth/react"
+import UserButton from "@/components/user-button";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,7 +24,7 @@ const Navbar = () => {
         <div className="bg-black text-white py-2 text-sm flex items-center px-8 w-full">
           <div className="text-center flex-1">
             Sign up and get 20% off your first order.
-            <Link href={'#'} className='underline hover:text-gray-300'>Sign Up Now</Link>
+            <Link href={'/'} className='underline hover:text-gray-300'>Sign Up Now</Link>
           </div>
 
           <div className="flex gap-[2px] items-center">
@@ -39,7 +41,7 @@ const Navbar = () => {
               Shop
               <IoIosArrowDown className='mt-1' />
             </Link>
-            <Link href={'/Category'} className='text-gray-600 hover:text-black'>On Sale</Link>
+            <Link href={'/#latest-product'} className='text-gray-600 hover:text-black'>On Sale</Link>
             <Link href={'/Category'} className='text-gray-600 hover:text-black'>New Arrivals</Link>
             <Link href={'/ProductDetails'} className='text-gray-600 hover:text-black'>Brands</Link>
           </nav>
@@ -50,8 +52,11 @@ const Navbar = () => {
               <CiSearch />
               <input type="text" placeholder='Search for products...?' className='outline-none bg-slate-100 text-sm' />
             </div>
-            <HiOutlineShoppingCart />
-            <FaRegUserCircle />
+          <Link href={'/Cart'}>  <HiOutlineShoppingCart className='w-5 h-5' /></Link>
+            {/* <FaRegUserCircle className='w-5 h-5' /> */}
+            <SessionProvider>
+        <UserButton />
+      </SessionProvider>
           </div>
 
           <button className="md:hidden text-black" onClick={toggleMenu}>

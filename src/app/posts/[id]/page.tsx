@@ -133,7 +133,7 @@
 
 
 
-
+'use client'
 
 import Image from 'next/image';
 import React from 'react'
@@ -147,6 +147,10 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillCheckCircle } from 'react-icons/ai';
 import Link from 'next/link';
+import Swal from 'sweetalert2';
+import { Product } from '../../../../types/products';
+import { addToCart } from '@/app/actions/actions';
+import product from '@/sanity/schemaTypes/product';
 
 
 const products = [
@@ -257,6 +261,23 @@ const ProductDetails = ({ params }: { params: { id: string } }) => {
           </p>
         ));
       };
+
+
+      const handleAddtoCart = (e:React.MouseEvent,product:Product) => {
+            e.preventDefault();
+            Swal.fire({
+              position:'top-start',
+              icon:'success',
+              title:`${product.name} Added Your Cart`,
+              showConfirmButton:false,
+              timer:2000
+            })
+            addToCart(product);
+          }
+
+
+      
+
   return (
     <>    
 <div className="w-full mt-[34px] ml-[5%] border-[1px] border-gray-300 max-w-screen-lg mx-auto"></div><br />
@@ -327,7 +348,10 @@ const ProductDetails = ({ params }: { params: { id: string } }) => {
 
         <div className="flex gap-4 mt-4">
             <div className="w-[170px] h-[52px]  rounded-[62px] flex justify-between py-4 px-5 bg-[#F0F0F0]"><span>-</span><span>1</span><span><RiAddLargeLine /></span></div>
-       <Link href={'/Cart'}><button className='w-full sm:w-[400px] h-[52px] rounded-[62px] pt-4 bg-black text-white pb-[23px] gap-3 font-medium leading-[21.6px]'>Add to Cart</button></Link>
+   <button className='w-full sm:w-[400px] h-[52px] rounded-[62px] pt-4 bg-black text-white pb-[23px] gap-3 font-medium leading-[21.6px]'
+       onClick={(e)=>handleAddtoCart(e,product)} >Add to Cart</button>
+       <Link href={'/Cart'} className="bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl 
+          hover:scale-110 transition-transform duration-300 ease-in-out">Checkout</Link>
         </div>
     </div>
 </div>

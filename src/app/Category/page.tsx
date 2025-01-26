@@ -468,7 +468,7 @@ import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
 import Link from "next/link";
 
 const Category = () => {
-  // Product data as an array of objects
+ 
   const products = [
     {
       id: 1,
@@ -557,9 +557,9 @@ const Category = () => {
     <>
       <div className="w-full mt-8 border-b-[1px] border-gray-300 max-w-screen-lg mx-auto"></div>
       <div className="flex gap-3 mt-4 px-4 sm:px-8 lg:px-16">
-        <p className="text-slate-500 flex items-center text-sm sm:text-base">
+     <Link href={'/'}>   <p className="text-slate-500 flex hover:text-black items-center text-sm sm:text-base">
           Home <IoIosArrowForward className="mx-1" />
-        </p>
+        </p></Link>
         <p className="text-sm sm:text-base">Casual</p>
       </div>
 
