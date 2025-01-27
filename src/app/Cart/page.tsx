@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { Product } from "../../../types/products";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Cart = () => {
   const [cartItems, setCartItems] = useState<Product[]>([]);
@@ -64,6 +65,8 @@ const Cart = () => {
     );
   };
 
+const router =useRouter();
+
   const handleProceed = () => {
     Swal.fire({
       title: "Processing your order...",
@@ -80,6 +83,7 @@ const Cart = () => {
           "Your order has been successfully processed!",
           "success"
         );
+        router.push("/checkout");
        
         setCartItems([]);
       }
@@ -90,18 +94,18 @@ const Cart = () => {
 
       <div className="w-full px-4 md:px-8 lg:px-10 mt-4">
         <div className="flex gap-2 items-center text-gray-500 text-sm md:text-base">
-         <Link href={'/'} className="hover:text-black">Home</Link>
+         <Link href={'/'} className="hover:text-black hover:underline">Home</Link>
           <IoIosArrowForward />
           <p className="text-black">Cart</p>
         </div>
       </div>
 
 
-      <h1 className="text-3xl md:text-5xl underline font-bold px-4 md:px-8 lg:px-10 mt-4">
+      <h1 className="text-3xl text-yellow-500 md:text-5xl underline font-mono font-bold px-4 md:px-8 lg:px-10 mt-4">
         YOUR CART
       </h1>
 
-
+<br />
       <div className="flex flex-col lg:flex-row gap-8 px-4 md:px-8 lg:px-10 mt-6">
 
         <div className="flex-1 border-[1px] rounded-[20px] space-y-6">
