@@ -33,7 +33,7 @@ const Navbar = () => {
         </div>
 
        
-        <div className="flex justify-between items-center px-8 py-4 w-full">
+        <div className="flex justify-between items-center px-6 py-4 w-full">
          <Link href={'/'}> <h1 className='text-3xl font-black text-black px-10'>SHOP.CO</h1></Link>
 
           <nav className="hidden md:flex gap-4 items-center">
@@ -47,7 +47,7 @@ const Navbar = () => {
           </nav>
 
          
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center space-x-4">
             <div className="hidden lg:flex w-[577px] h-12 items-center bg-gray-100 rounded-[62px] px-4 py-3">
               <CiSearch />
               <input type="text" placeholder='Search for products...?' className='outline-none bg-slate-100 text-sm' />

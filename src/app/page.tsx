@@ -42,9 +42,6 @@ export default function Home() {
   <>
   <Hero/>
   <Products/>
-  <SessionProvider>
-        <UserButton />
-      </SessionProvider>
   <Browse/>
 
 <section id="latest-product">
