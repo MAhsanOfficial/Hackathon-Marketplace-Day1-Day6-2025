@@ -1,13 +1,3 @@
-// /** @type {import('next').NextConfig} */
-// const nextConfig = {
-//     images:{
-//         domains: ['cnd.sanity.io'],
-//     },
-// };
-
-// export default nextConfig;
-
-
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {

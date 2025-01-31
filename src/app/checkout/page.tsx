@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -7,13 +7,15 @@ import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 import { CgChevronRight } from "react-icons/cg";
 import { Product } from "../../../types/products";
+import { client } from "@/sanity/lib/client";
+import Swal from "sweetalert2";
 
 
 export default function CheckoutPage() {
   const [cartItems, setCartItems] = useState<Product[]>([]);
   const [discount, setDiscount] = useState<number>(0);
   const [formValues, setFormValues] = useState({
-    firstName: "",
+    firstName: "",  
     lastName: "",
     address: "",
     city: "",
@@ -67,18 +69,67 @@ export default function CheckoutPage() {
     return Object.values(errors).every((error) => !error);
   };
 
-  const handlePlaceOrder = () => {
-    if (validateForm()) {
-      localStorage.removeItem("appliedDiscount");
-    //   toast.success("Order placed successfully!");
-    } else {
-    //   toast.error("Please fill in all the fields.");
+  const handlePlaceOrder =async () => {
+  
+
+
+    Swal.fire({
+      title:'Processing Your Order...',
+      text:'Please wait a moment',
+      icon:'info',
+      showCancelButton:true,
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor:'#d33',
+      confirmButtonText:"Proceed",
+    }).then((result)=>{
+  if(result.isConfirmed){
+    if(validateForm()){
+      localStorage.removeItem('appliedDiscount');
+      Swal.fire(
+        'Success!',
+        'Your Order has been Successfully Processed',
+        'success'
+      );
+    }else{
+      Swal.fire(
+        'Error!',
+        'PLease fill in all the fields before processing',
+        'error'
+      );
     }
-  };
+  }
+    });
+
+
+
+    const orderData = {
+      _type:"order",
+      firstName:formValues.firstName,
+      lastName:formValues.lastName,
+      address:formValues.address,
+      city:formValues.city,
+      zipCode:formValues.zipCode,
+      phone:formValues.phone,
+      email:formValues.email,
+      cartItems:cartItems.map(item=>({
+        _type:'reference',
+        _ref:item._id
+      })),
+      total:total,
+      discount:discount,
+      orderDate:new Date().toISOString,
+    };
+    try{
+      await client.create(orderData)
+      localStorage.removeItem('appliedDiscount')
+    }catch(error){
+      console.log(error,'error creating order'); 
+    }
+  }
 
   return (
-    <div className={`min-h-screen bg-gray-50`}>
-      {/* Breadcrumb */}
+    <div className={`min-h-screen bg-gray-100`}>
+  
       <div className="mt-6">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center gap-2 py-4">
@@ -94,11 +145,11 @@ export default function CheckoutPage() {
         </div>
       </div>
 
-      {/* Main Content */}
+      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Order Summary */}
-          <div className="bg-blue-400 border rounded-lg p-6 space-y-4">
+          
+          <div className="bg-white border rounded-lg p-6 space-y-4">
             <h2 className="text-xl underline font-semibold mb-4 font-mono">Order Summary</h2>
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
@@ -144,7 +195,7 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* Billing Form */}
+        
           <div className="bg-yellow-300 border rounded-lg p-6 space-y-6">
             <h2 className="text-2xl underline font-semibold font-mono">Billing Information</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -248,7 +299,7 @@ export default function CheckoutPage() {
               className="w-full h-12 bg-blue-500 hover:bg-blue-700 text-white"
               onClick={handlePlaceOrder}
             >
-              Place Order
+              PlaceOrder
             </button>
           </div>
         </div>
