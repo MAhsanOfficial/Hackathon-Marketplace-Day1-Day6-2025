@@ -72,7 +72,7 @@ const SignUp = () => {
     <div className="h-full flex items-center justify-center bg-[#1b0918]">
       <Card className="md:h-auto w-[80%] sm:w-[420px] p-4 sm:p-8">
         <CardHeader>
-          <CardTitle className="text-center">Sign up</CardTitle>
+          <CardTitle className="text-center text-2xl text-yellow-500 underline font-mono">Sign up</CardTitle>
           <CardDescription className="text-sm text-center text-accent-foreground">
             Use email or service, to create account
           </CardDescription>

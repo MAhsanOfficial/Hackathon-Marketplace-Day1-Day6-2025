@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { CiHeart, CiSearch } from 'react-icons/ci'
+import {  CiSearch } from 'react-icons/ci'
 import { HiOutlineShoppingCart } from 'react-icons/hi'
 import { RxCross2 } from "react-icons/rx";
 import { FaRegUserCircle } from "react-icons/fa";
@@ -16,7 +16,6 @@ const Navbar = () => {
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-
   return (
     <>
       <header className='bg-white shadow-sm border-b mx-auto flex flex-col'>
@@ -24,7 +23,7 @@ const Navbar = () => {
         <div className="bg-black text-white py-2 text-sm flex items-center px-8 w-full">
           <div className="text-center flex-1">
             Sign up and get 20% off your first order.
-            <Link href={'/'} className='underline hover:text-gray-300'>Sign Up Now</Link>
+            <Link href={'/sign-up'} className='underline hover:text-gray-300'>Sign Up Now</Link>
           </div>
 
           <div className="flex gap-[2px] items-center">
