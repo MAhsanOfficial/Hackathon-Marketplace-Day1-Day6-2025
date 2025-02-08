@@ -33,7 +33,7 @@ const Navbar = () => {
 
        
         <div className="flex justify-between items-center px-6 py-4 w-full">
-         <Link href={'/'}> <h1 className='text-3xl font-black text-black font-mono text-yellow-500 px-10'>CLothsing.</h1></Link>
+         <Link href={'/'}> <h1 className='text-3xl font-black  font-mono text-yellow-500 px-10'>CLothsing.</h1></Link>
 
           <nav className="hidden md:flex gap-4 items-center">
             <Link href={'/'} className='text-gray-600 hover:text-black flex'>
